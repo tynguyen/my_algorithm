@@ -1,10 +1,12 @@
 //Written by Ty Nguyen
 //2014.04.10
 //QuickSort implemented following book's instruction.
-#include <iostream>
 #include <ctime>
 #include <stdlib.h>
-
+#include <iostream>     // std::cout
+#include <algorithm>    // std::swap
+#include <vector>       // std::vector
+using namespace std;
 template<class T>
 void Partition(T* ipA, int left, int right) {
 
@@ -23,13 +25,10 @@ void Partition(T* ipA, int left, int right) {
       	if (ipA[j]<= iPivot)
     	{
       		i = i+1;
-    		T iTemp  = ipA[i];
-    		ipA[i]     = ipA[j];
-			ipA[j]     = iTemp;
+      		swap(ipA[i],ipA[j]);
 
     	}
-    ipA[right] = ipA[i+1];
-	ipA[i+1]     = iPivot;
+    swap(ipA[right],ipA[i+1]);
     // Recursively call partition on each partition.
 
     Partition(ipA, left, i);
@@ -45,7 +44,7 @@ void Quicksort(T* ipA, int left, int right) {
 int main() {
     using namespace std;
 
-    int iaArray[] = {24, 5, 3, 35, 14, 23, 2, 43, 19};
+    int iaArray[] = {24, 5, 5, 35, 14, 23, 2, 23, 19};
     int iSize = 9;
 
     Quicksort(iaArray, 0, 8);
